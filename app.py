@@ -32,6 +32,8 @@ def load_model():
 
 # ------------------ Prediction ------------------
 def predict(image):
+    model = load_model()   # <-- MOVE HERE
+
     original = np.array(image)
     image_resized = cv2.resize(original, (512, 512))
 
@@ -64,4 +66,5 @@ if image_file:
         col2.image(gt, caption="Ground Truth")
 
     col3.image(pred_mask, caption="Prediction")
+
 
