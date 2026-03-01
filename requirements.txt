@@ -1,1 +1,10 @@
+streamlit
+torch
+torchvision
+pytorch-lightning
+segmentation-models-pytorch
+opencv-python-headless
+numpy
+pillow
 requests
+timm
