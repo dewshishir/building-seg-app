@@ -6,18 +6,18 @@ from PIL import Image
 import os
 import requests
 from model.seg_model import SegModel
-
+import gdown
 # ------------------ Config ------------------
 MODEL_PATH = "model.ckpt"
 MODEL_URL = "https://drive.google.com/uc?id=1SIYgEU3UdMaxCN7G00sdv6PsBnuYfngH"
 
+def download_model():
+    gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # ------------------ Download Model ------------------
-def download_model():
-    response = requests.get(MODEL_URL)
-    with open(MODEL_PATH, "wb") as f:
-        f.write(response.content)
+
 
 # ------------------ Load Model ------------------
 @st.cache_resource
@@ -29,8 +29,6 @@ def load_model():
     model.to(device)
     model.eval()
     return model
-
-model = load_model()
 
 # ------------------ Prediction ------------------
 def predict(image):
@@ -66,3 +64,4 @@ if image_file:
         col2.image(gt, caption="Ground Truth")
 
     col3.image(pred_mask, caption="Prediction")
+
