@@ -48,7 +48,7 @@ def predict(image):
     return original, pred.squeeze().cpu().numpy()
 
 # ------------------ UI ------------------
-st.title("Building Segmentation Demo")
+st.title("Building Segmentation Thesis")
 
 image_file = st.file_uploader("Upload Image", type=["png", "jpg"])
 mask_file = st.file_uploader("Upload Ground Truth Mask (Optional)", type=["png"])
@@ -66,5 +66,6 @@ if image_file:
         col2.image(gt, caption="Ground Truth")
 
     col3.image(pred_mask, caption="Prediction")
+
 
 
